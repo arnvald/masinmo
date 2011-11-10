@@ -14,6 +14,7 @@ gem 'haml'
 gem 'jquery-rails'
 gem 'simple_form'
 gem 'gmaps4rails'
+gem 'capistrano'
 
 group :assets do
   gem 'sass-rails', "  ~> 3.1.0"
