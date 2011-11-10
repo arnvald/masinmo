@@ -4,3 +4,15 @@
 
 // To customize the Active Admin interfaces, add your
 // styles here:
+
+li#advertisers {
+  display: inline !important;
+}
+
+table#advertisers {
+  display: table !important;
+}
+
+form.advertiser, div.advertiser {
+  display: block !important;
+}
