@@ -8,7 +8,7 @@ class OffersController < ApplicationController
 
   def index
     @search = Offer.search(params[:q])
-    @offers = @search.result
+    @offers = @search.result.page(params[:page] || 1)
   end
 
   def show; end

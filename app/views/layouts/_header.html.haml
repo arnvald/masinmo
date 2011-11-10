@@ -8,6 +8,8 @@
         %li{class: offers_nav_class}= link_to 'Offers', offers_path
         - if current_user
           %li{class: my_offers_nav_class}= link_to 'My Offers', user_offers_path(current_user)
+          - if current_user.admin?
+            %li= link_to 'Admin panel', "/admin"
       %p.pull-right
         - if current_user
           Logged as

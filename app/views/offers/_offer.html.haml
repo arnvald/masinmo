@@ -1,5 +1,7 @@
-%div.span-one-third.offer{:id => offer.object_id}
+%div.span16.offer{:id => offer.object_id}
+  %p.pull-left= image_tag offer.photos.first.image.thumb unless offer.photos.empty?
   %h3= link_to offer.title, offer_path(offer)
+  %p= offer.gmaps4rails_address
   %p= offer.summary
 
 

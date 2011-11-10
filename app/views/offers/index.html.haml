@@ -27,6 +27,7 @@
     = show_map(@offers)
   - else
     = render @offers
+#pagination= paginate @offers
 
 - content_for :footer do
   = javascript_include_tag "gmaps4rails/googlemaps"
