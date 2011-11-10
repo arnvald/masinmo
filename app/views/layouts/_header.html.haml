@@ -1,0 +1,21 @@
+.topbar
+  .fill
+    .container
+      %h1.pull-left
+        = link_to '+inMO', root_path
+      %ul.nav
+        %li{class: home_nav_class}= link_to 'Home', root_path
+        %li{class: offers_nav_class}= link_to 'Offers', offers_path
+        - if current_user
+          %li{class: my_offers_nav_class}= link_to 'My Offers', user_offers_path(current_user)
+      %p.pull-right
+        - if current_user
+          Logged as
+          = link_to current_user, '#'
+          |
+          = link_to "log out", sign_out_path
+        - else
+          = link_to "log in", sign_in_path
+          |
+          = link_to "sign up", sign_up_path
+      .clear

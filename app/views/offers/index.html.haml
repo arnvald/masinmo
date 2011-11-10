@@ -1,0 +1,33 @@
+- content_for :sidebar do
+  %h4= link_to "New offer", new_offer_path if current_user
+
+  %p
+  - if map_view?
+    = link_to "List view", url_for(map: false, q: params[:q])
+  - else
+    = link_to "Map view", url_for(map: true, q: params[:q])
+
+  = search_form_for @search do |f|
+    = f.label :title_cont
+    = f.text_field :title_cont
+    = f.label :country_eq
+    = f.text_field :country_eq
+    = f.label :city_cont
+    = f.text_field :city_cont
+    = f.label :street_cont
+    = f.text_field :street_cont
+    = f.label :price_gt
+    = f.text_field :price_gt
+    = f.label :price_lt
+    = f.text_field :price_lt
+    = f.submit
+
+%div#offers.row.show-grid
+  - if map_view?
+    = show_map(@offers)
+  - else
+    = render @offers
+
+- content_for :footer do
+  = javascript_include_tag "gmaps4rails/googlemaps"
+  = yield :scripts

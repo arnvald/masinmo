@@ -1,0 +1,4 @@
+%h2= @offer.title
+- @offer.photos.each do |photo|
+  - unless photo.image.nil?
+    =link_to image_tag(photo.image.thumb.url), photo.image.to_s

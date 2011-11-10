@@ -1,0 +1,15 @@
+%div.span-one-third.offer{:id => offer.object_id}
+  %h3= link_to offer.title, offer_path(offer)
+  %p= offer.summary
+
+
+  - if current_user && (offer.owned_by?(current_user) || current_user.admin?)
+    %p
+      - if offer.draft?
+        = link_to 'publish', publish_user_offer_path(current_user, offer), method: :put
+      - elsif offer.published?
+        = link_to 'hide', hide_user_offer_path(current_user, offer), method: :put
+      - else
+        Offer expired
+      = link_to 'edit', edit_user_offer_path(current_user, offer)
+      = link_to 'delete', edit_user_offer_path(current_user, offer)

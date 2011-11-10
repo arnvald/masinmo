@@ -1,0 +1,25 @@
+!!!
+%html
+
+  %head
+    %title +inMO
+    %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tag
+    = yield :head
+
+  %body
+    = render "/layouts/header"
+
+    .container-fluid
+      .sidebar
+        .well
+          = yield :sidebar
+      .content
+        - flash.each do |name, msg|
+          = content_tag :div, msg, id: "flash_#{name}"
+        = yield
+        %footer
+          %p Masinmo 2011.
+          = yield :footer

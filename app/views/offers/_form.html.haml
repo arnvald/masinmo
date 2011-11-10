@@ -1,0 +1,34 @@
+#tabslinks
+  = link_to 'Description', '#tab1'
+  = link_to 'Location', '#tab2'
+  = link_to 'Detailed information', '#tab3'
+  = link_to 'Rooms', '#tab4'
+  = link_to 'Media', '#tab5'
+= simple_form_for @offer do |f|
+  #tab1.tab
+    = f.error_messages
+    = f.input :title
+    = f.input :summary
+    = f.input :description
+    = f.input :kind, collection: Offer::KINDS, include_blank: false, required: false
+  #tab2.tab
+    = f.input :country
+    = f.input :region
+    = f.input :city
+    = f.input :street
+  #tab3.tab.hidden
+    Here will be more details about flat
+  #tab4.tab.hidden
+    Here will be details about rooms
+  #tab5.tab.hidden
+    = f.simple_fields_for :photos do |fp|
+      .input= image_tag fp.object.image.thumb.url
+      = fp.input :image, as: :file
+      = fp.input :title
+      = fp.input :description
+      = fp.input :remove_image, as: :boolean
+      = fp.input :image_cache, as: :hidden
+  = f.button :submit
+
+- content_for :footer do
+  = javascript_include_tag "offers"
