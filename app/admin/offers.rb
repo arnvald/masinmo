@@ -1,5 +1,5 @@
 ActiveAdmin.register Offer do
-  scope :all, :default => true
+  scope :all, default: true
   scope :drafts
   scope :published
 
@@ -7,4 +7,14 @@ ActiveAdmin.register Offer do
   filter :user
   filter :city
   filter :country
+  filter :state
+
+  index do
+    column :title
+    column :user
+    column :city
+    column :state
+    column :country
+    default_actions
+  end
 end
