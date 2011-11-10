@@ -1,5 +1,9 @@
 class Advertiser < ActiveRecord::Base
 
-  attr_accessible :phone, :email, :name
+  has_many :contracts
+
+  validates :phone, presence: true
+  validates :name, presence: true
+  validates :email, presence: true
 
 end

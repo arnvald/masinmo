@@ -4,6 +4,7 @@ class Offer < ActiveRecord::Base
   KINDS = ["sell", "rent"]
 
   acts_as_gmappable check_process: false
+  paginates_per 20
 
   belongs_to :user
   has_many :photos
