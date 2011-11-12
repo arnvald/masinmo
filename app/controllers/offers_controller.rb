@@ -32,15 +32,15 @@ class OffersController < ApplicationController
 
   def update
     if @offer.update_attributes(params[:offer])
-      redirect_to offers_path
+      redirect_to user_offers_path(current_user)
     else
-      render actipn: :edit
+      render action: :edit
     end
   end
 
   def destroy
     @offer.destroy
-    redirect_to offers_path
+    redirect_to user_offers_path(current_user)
   end
 
   def publish
