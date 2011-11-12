@@ -12,6 +12,8 @@
     = f.text_field :title_cont
     = f.label :country_eq
     = f.text_field :country_eq
+    = f.label :region_eq
+    = f.text_field :region_eq
     = f.label :city_cont
     = f.text_field :city_cont
     = f.label :street_cont
@@ -20,6 +22,12 @@
     = f.text_field :price_gt
     = f.label :price_lt
     = f.text_field :price_lt
+    = f.label :rooms
+    = f.text_field :rooms
+    = f.label :bathrooms
+    = f.text_field :bathrooms
+    = f.label :kind_eq
+    = f.select :kind_eq, ["sell", "rent"]
     = f.submit
 
 %div#offers.row.show-grid

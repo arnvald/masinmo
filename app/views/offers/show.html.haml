@@ -1,4 +1,58 @@
+= link_to "Back to offers", offers_path
 %h2= @offer.title
-- @offer.photos.each do |photo|
-  - unless photo.image.nil?
-    =link_to image_tag(photo.image.thumb.url), photo.image.to_s
+%h4= @offer.summary
+.row.show-grid
+  - @offer.photos.each do |photo|
+    .span-one-third
+      =link_to image_tag(photo.image.thumb.url), photo.image.url, class: "show_photo"
+.offer_details
+  .location_details
+    %p
+      %strong Country
+      = @offer.country
+    %p
+      %strong Region
+      = @offer.region
+    %p
+      %strong City
+      = @offer.city
+    %p
+      %strong Street
+      = @offer.street
+    %p
+      %strong Building
+      = @offer.building
+  .info_details
+    %p
+      %strong Price
+      = @offer.price
+    %p
+      %strong Description
+      = @offer.description
+    %p
+      %strong Rooms
+      = @offer.rooms
+    %p
+      %strong Bathrooms
+      = @offer.bathrooms
+    %p
+      %strong Property type
+      = @offer.property_type
+    %p
+      %strong Internet
+      = @offer.internet
+
+    %p
+      %strong Furnished
+      = @offer.furnished
+
+  .contact_details
+    %p
+      %strong Email
+      = @offer.user.email
+  .map
+    = gmaps(markers: {data: [@offer].to_gmaps4rails})
+
+- content_for :footer do
+  = javascript_include_tag "gmaps4rails/googlemaps"
+  = yield :scripts

@@ -2,8 +2,7 @@
   = link_to 'Description', '#tab1'
   = link_to 'Location', '#tab2'
   = link_to 'Detailed information', '#tab3'
-  = link_to 'Rooms', '#tab4'
-  = link_to 'Media', '#tab5'
+  = link_to 'Media', '#tab4'
 = simple_form_for @offer do |f|
   #tab1.tab
     = f.error_messages
@@ -17,10 +16,12 @@
     = f.input :city
     = f.input :street
   #tab3.tab.hidden
-    Here will be more details about flat
+    = f.input :rooms
+    = f.input :bathrooms
+    = f.input :property_type
+    = f.input :internet
+    = f.input :furnished
   #tab4.tab.hidden
-    Here will be details about rooms
-  #tab5.tab.hidden
     = f.simple_fields_for :photos do |fp|
       .input= image_tag fp.object.image.thumb.url
       = fp.input :image, as: :file

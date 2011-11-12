@@ -7,7 +7,11 @@ class OffersController < ApplicationController
   before_filter :check_owner, except: [:index, :show, :new, :create]
 
   def index
-    @search = Offer.search(params[:q])
+    if params[:user_id]
+      @search = Offer.search(params[:q])
+    else
+      @search = Offer.published.search(params[:q])
+    end
     @offers = @search.result.page(params[:page] || 1)
   end
 
@@ -20,6 +24,7 @@ class OffersController < ApplicationController
 
   def create
     @offer = Offer.new(params[:offer].merge(:user_id => current_user.id))
+    @offer.save
     redirect_to user_offers_path(current_user)
   end
 

@@ -7,12 +7,12 @@ class ImageUploader < CarrierWave::Uploader::Base
   storage :file
   process :resize_to_fit => [600, 600]
 
-   version :thumb do
-     process :resize_to_fit => [90, 90]
+   version :search do
+     process :resize_and_pad => [90, 90]
    end
 
-   version :search do
-     process :resize_to_fit => [200, 200]
+   version :thumb do
+     process :resize_and_pad => [210, 150]
    end
 
   def store_dir
@@ -24,6 +24,6 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    "/images/fallback/" + [version_name, "default.jpg"].compact.join('_')
+    "/assets/fallback/" + [version_name, "default.jpg"].compact.join('_')
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111110164347) do
+ActiveRecord::Schema.define(:version => 20111111144717) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -52,12 +52,17 @@ ActiveRecord::Schema.define(:version => 20111110164347) do
     t.string  "city"
     t.string  "region"
     t.string  "country"
-    t.float   "price",       :default => 0.0,     :null => false
-    t.string  "state",       :default => "draft", :null => false
+    t.float   "price",         :default => 0.0,     :null => false
+    t.string  "state",         :default => "draft", :null => false
     t.float   "latitude"
     t.float   "longitude"
     t.boolean "gmaps"
-    t.string  "kind",        :default => "sell",  :null => false
+    t.string  "kind",          :default => "sell",  :null => false
+    t.integer "rooms"
+    t.integer "bathrooms"
+    t.string  "property_type"
+    t.boolean "internet"
+    t.boolean "furnished"
   end
 
   add_index "offers", ["city"], :name => "index_offers_on_city"

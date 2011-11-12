@@ -27,7 +27,7 @@ class Offer < ActiveRecord::Base
   # MAPS
   # ========
   def gmaps4rails_address
-    [street, building, city, country].compact.join(', ')
+    [street, building, city, country].select{|x| x != ""}.join(', ')
   end
 
   def gmaps4rails_infowindow
