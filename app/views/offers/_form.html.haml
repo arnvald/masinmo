@@ -10,6 +10,8 @@
     = f.input :summary
     = f.input :description
     = f.input :kind, collection: Offer::KINDS, include_blank: false, required: false
+    = f.input :property_type, collection: Offer::PROPERTY_TPES, include_blank: false, required: false
+    = f.input :price
   #tab2.tab.hidden
     = f.input :country
     = f.input :region

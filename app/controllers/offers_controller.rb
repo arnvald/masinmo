@@ -56,6 +56,18 @@ class OffersController < ApplicationController
     redirect_to offers_path
   end
 
+  def countries
+    render json: Offer.published.map(&:country).uniq!
+  end
+
+  def regions
+    render json: Offer.published.by_country(params[:country]).map(&:region).uniq!
+  end
+
+  def cities
+    render json: Offer.published.by_country(params[:country]).by_region(params[:region]).map(&:city).uniq!
+  end
+
   private
   def find_offer
     @offer = Offer.find(params[:id])

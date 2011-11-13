@@ -2,6 +2,7 @@ class Offer < ActiveRecord::Base
 
   STATES = ["draft", "published", "archived"]
   KINDS = ["sell", "rent"]
+  PROPERTY_TYPES = ["house", "flat"]
 
   acts_as_gmappable check_process: :prevent_geocoding, msg: "Wrong address"
   paginates_per 20
@@ -16,10 +17,14 @@ class Offer < ActiveRecord::Base
   validates :price, presence: true, numericality: {greater_than: 0}, if: :published?
   validates :state, presence: true, inclusion: STATES
   validates :kind, presence: true, inclusion: KINDS
+  validates :property_type, presence: true, inclusion: PROPERTY_TYPES
 
   scope :published, where(state: "published")
   scope :drafts, where(state: "draft")
   scope :archived, where(state: "archived")
+
+  scope :by_country, lambda {|c| where(country: c)}
+  scope :by_region, lambda {|r| where(country: r)}
 
   accepts_nested_attributes_for :photos
 
