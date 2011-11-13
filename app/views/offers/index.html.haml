@@ -27,7 +27,7 @@
     = f.label :bathrooms_eq
     = f.text_field :bathrooms_eq
     = f.label :kind_eq
-    = f.select :kind_eq, ["sell", "rent"]
+    = f.select :kind_eq, {"sell or rent" => "", "sell" => "sell", "rent" => "rent"}
     = f.submit
 
 %div#offers.row.show-grid
