@@ -10,7 +10,7 @@
     = f.input :summary
     = f.input :description
     = f.input :kind, collection: Offer::KINDS, include_blank: false, required: false
-  #tab2.tab
+  #tab2.tab.hidden
     = f.input :country
     = f.input :region
     = f.input :city

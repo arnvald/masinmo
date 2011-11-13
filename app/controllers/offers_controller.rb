@@ -24,8 +24,11 @@ class OffersController < ApplicationController
 
   def create
     @offer = Offer.new(params[:offer].merge(:user_id => current_user.id))
-    @offer.save
-    redirect_to user_offers_path(current_user)
+    if @offer.save
+      redirect_to user_offers_path(current_user)
+    else
+      render action: :new
+    end
   end
 
   def edit; end

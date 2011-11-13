@@ -3,7 +3,7 @@ class Offer < ActiveRecord::Base
   STATES = ["draft", "published", "archived"]
   KINDS = ["sell", "rent"]
 
-  acts_as_gmappable check_process: false
+  acts_as_gmappable check_process: :prevent_geocoding, msg: "Wrong address"
   paginates_per 20
 
   belongs_to :user
@@ -55,5 +55,10 @@ class Offer < ActiveRecord::Base
     define_method "#{state}?" do
       self.state == state
     end
+  end
+
+  private
+  def prevent_geocoding
+    country.blank? && city.blank? && street.blank?
   end
 end
