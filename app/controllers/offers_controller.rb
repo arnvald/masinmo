@@ -7,7 +7,7 @@ class OffersController < ApplicationController
   before_filter :check_owner, except: [:index, :show, :new, :create]
 
   def index
-    if params[:user_id]
+    if params[:user_id] && current_user && current_user.id == params[:user_id].to_i
       @search = Offer.search(params[:q])
     else
       @search = Offer.published.search(params[:q])
