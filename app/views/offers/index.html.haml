@@ -11,7 +11,7 @@
     = f.label :title_cont
     = f.text_field :title_cont
     = f.label :country_eq
-    = f.select :country_eq, @countries
+    = f.select :country_eq, [""] + @countries
     = f.label :region_eq
     = f.select :region_eq, []
     = f.label :city_cont
