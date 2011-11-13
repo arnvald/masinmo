@@ -9,6 +9,9 @@ Inmo::Application.routes.draw do
 
   root :to => "main#index"
 
+  match "search/cities" => "search#cities"
+  match "search/regions" => "search#regions"
+
   resources :offers
 
   resources :users do

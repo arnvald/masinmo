@@ -11,11 +11,11 @@
     = f.label :title_cont
     = f.text_field :title_cont
     = f.label :country_eq
-    = f.text_field :country_eq
+    = f.select :country_eq, @countries
     = f.label :region_eq
-    = f.text_field :region_eq
+    = f.select :region_eq, []
     = f.label :city_cont
-    = f.text_field :city_cont
+    = f.select :city_cont, []
     = f.label :street_cont
     = f.text_field :street_cont
     = f.label :price_gt

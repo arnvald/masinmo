@@ -13,6 +13,10 @@ class OffersController < ApplicationController
       @search = Offer.published.search(params[:q])
     end
     @offers = @search.result.page(params[:page] || 1)
+    @countries = clear_results @search.result.map(&:country)
+    #TODO: add default regions and cities
+    #@regions = clear_results @search.result.map(&:region)
+    #@cities = clear_results @search.result.map(&:city)
   end
 
   def show; end
@@ -48,24 +52,12 @@ class OffersController < ApplicationController
 
   def publish
     @offer.publish!
-    redirect_to offers_path
+    redirect_to user_offers_path(current_user)
   end
 
   def hide
     @offer.hide!
-    redirect_to offers_path
-  end
-
-  def countries
-    render json: Offer.published.map(&:country).uniq!
-  end
-
-  def regions
-    render json: Offer.published.by_country(params[:country]).map(&:region).uniq!
-  end
-
-  def cities
-    render json: Offer.published.by_country(params[:country]).by_region(params[:region]).map(&:city).uniq!
+    redirect_to user_offers_path(current_user)
   end
 
   private
@@ -78,6 +70,10 @@ class OffersController < ApplicationController
       flash[:error] = "It's not your offer"
       redirect_to offers_path
     end
+  end
+
+  def clear_results(arr)
+    arr.uniq.select {|x| !x.blank?}
   end
 
 end
