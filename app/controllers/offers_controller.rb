@@ -13,10 +13,9 @@ class OffersController < ApplicationController
       @search = Offer.published.search(params[:q])
     end
     @offers = @search.result.page(params[:page] || 1)
-    @countries = clear_results @search.result.map(&:country)
-    #TODO: add default regions and cities
-    #@regions = clear_results @search.result.map(&:region)
-    #@cities = clear_results @search.result.map(&:city)
+    @countries = clear_results Offer.published.map(&:country)
+    @regions = clear_results Offer.publised.map(&:region)
+    @cities = clear_results Offer.published.map(&:city)
   end
 
   def show; end

@@ -13,9 +13,9 @@
     = f.label :country_eq
     = f.select :country_eq, [""] + @countries
     = f.label :region_eq
-    = f.select :region_eq, []
+    = f.select :region_eq, [""] + @regions
     = f.label :city_cont
-    = f.select :city_cont, []
+    = f.select :city_cont, [""] + @cities
     = f.label :street_cont
     = f.text_field :street_cont
     = f.label :price_gt
