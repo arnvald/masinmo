@@ -12,7 +12,11 @@ class OffersController < ApplicationController
     else
       @search = Offer.published.search(params[:q])
     end
-    @offers = @search.result.page(params[:page] || 1)
+    if params[:map] == "t"
+      @offers = @search.result
+    else
+      @offers = @search.result.page(params[:page] || 1)
+    end
     @countries = clear_results Offer.published.map(&:country)
     @regions = clear_results Offer.published.map(&:region)
     @cities = clear_results Offer.published.map(&:city)
