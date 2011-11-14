@@ -14,7 +14,7 @@ class OffersController < ApplicationController
     end
     @offers = @search.result.page(params[:page] || 1)
     @countries = clear_results Offer.published.map(&:country)
-    @regions = clear_results Offer.publised.map(&:region)
+    @regions = clear_results Offer.published.map(&:region)
     @cities = clear_results Offer.published.map(&:city)
   end
 
