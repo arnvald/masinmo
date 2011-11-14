@@ -13,7 +13,7 @@ ActiveAdmin.register Contract do
       f.input :finish_at
     end
     f.inputs "Banner" do
-      f.input :banner
+      f.input :banner, as: :file
       f.input :remove_banner, as: :boolean
     end
     f.buttons
