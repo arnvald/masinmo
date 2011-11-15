@@ -30,12 +30,12 @@
     = f.select :kind_eq, {"sell or rent" => "", "sell" => "sell", "rent" => "rent"}
     = f.submit
 
-%div#offers.row.show-grid
-  - if map_view?
-    = show_map(@offers)
-  - else
+- if map_view?
+  = show_map(@offers)
+- else
+  %div#offers.row.show-grid
     = render @offers
-#pagination= paginate @offers
+  #pagination= paginate @offers
 
 - content_for :footer do
   = yield :scripts

@@ -12,7 +12,7 @@ class OffersController < ApplicationController
     else
       @search = Offer.published.search(params[:q])
     end
-    if params[:map] == "t"
+    if params[:map] == "true"
       @offers = @search.result
     else
       @offers = @search.result.page(params[:page] || 1)
