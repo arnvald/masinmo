@@ -40,7 +40,10 @@
   = sort_link @search, :region
   = sort_link @search, :country
   %div#offers.row.show-grid
-    = render @offers
+    - if @offers.empty?
+      Sorry, nothing was found
+    - else
+      = render @offers
   #pagination= paginate @offers
 
 - content_for :footer do
