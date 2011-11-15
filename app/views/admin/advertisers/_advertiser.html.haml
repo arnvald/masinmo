@@ -1,0 +1,35 @@
+.panel
+  %h3 Advertiser details
+  .panel_contents
+    .attributes_table.advertiser{id: "attribute_table_advertiser#{advertiser.id}"}
+      %table
+        %tbody
+          %tr
+            %th Id
+            %td= advertiser.id
+          %tr
+            %th Name
+            %td= advertiser.name
+          %tr
+            %th Phone
+            %td= advertiser.phone
+          %tr
+            %th Email
+            %td= advertiser.email
+
+  %h3 Contracts
+  .panel_contents
+    .attributes_table
+      %table
+        %thead
+          %th Id
+          %th Start at
+          %th Finish at
+          %th Placement
+        %tbody
+          - advertiser.contracts.each do |contract|
+            %tr
+              %th= contract.id
+              %td= contract.start_at
+              %td= contract.finish_at
+              %td= contract.placement
