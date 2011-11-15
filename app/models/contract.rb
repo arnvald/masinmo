@@ -20,14 +20,12 @@ class Contract < ActiveRecord::Base
   end
 
   def free_dates
-    taken_days = Contract.days_taken(placement_id)
+    contracts = Contract.of_placement(placement_id).where("id != ?", id)
+    taken_days = contracts.map {|c| (c.start_at..c.finish_at).to_a }.flatten
+
     self_days = (start_at..finish_at).to_a
 
     errors.add("start_at", "date already taken") unless (self_days & taken_days).empty?
-  end
-
-  def self.days_taken(placement_id)
-    Contract.of_placement(placement_id).map {|c| (c.start_at..c.finish_at).to_a}.flatten
   end
 
 end
