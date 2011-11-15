@@ -10,12 +10,11 @@ class OffersController < ApplicationController
     if params[:user_id] && current_user && current_user.id == params[:user_id].to_i
       @search = current_user.offers.search(params[:q])
     else
-      @search = Offer.published.search(params[:q])
+      @search = Offer.published.search(params[:q] || {price_eq: "-1"})
     end
-    if params[:map] == "true"
-      @offers = @search.result
-    else
-      @offers = @search.result.page(params[:page] || 1)
+    @offers = @search.result
+    if params[:map] != "true"
+      @offers = @offers.page(params[:page] || 1)
     end
     @countries = clear_results Offer.published.map(&:country)
     @regions = clear_results Offer.published.map(&:region)
