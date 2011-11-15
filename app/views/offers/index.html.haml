@@ -40,7 +40,7 @@
   = sort_link @search, :region
   = sort_link @search, :country
   %div#offers.row.show-grid
-    - if @offers.empty?
+    - if @offers.empty? and params[:q]
       Sorry, nothing was found
     - else
       = render @offers
