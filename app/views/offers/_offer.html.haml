@@ -3,6 +3,7 @@
   %h3= link_to offer.title, offer_path(offer)
   %p= offer.gmaps4rails_address
   %p= offer.summary
+  %p= "Price: #{offer.price}"
 
 
   - if current_user && (offer.owned_by?(current_user) || current_user.admin?)
