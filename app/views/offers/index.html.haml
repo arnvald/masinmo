@@ -33,6 +33,12 @@
 - if map_view?
   = show_map(@offers)
 - else
+  = sort_link @search, :title
+  = sort_link @search, :price
+  = sort_link @search, :street
+  = sort_link @search, :city
+  = sort_link @search, :region
+  = sort_link @search, :country
   %div#offers.row.show-grid
     = render @offers
   #pagination= paginate @offers
