@@ -1,3 +1,5 @@
 Main page
-- if @contract_top and @contract_top.banner.present?
-  = image_tag @contract_top.banner
+
+- content_for :sidebar do
+  - if @contract_top and @contract_top.banner.present?
+    = image_tag @contract_top.banner
