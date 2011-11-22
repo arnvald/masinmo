@@ -2,7 +2,7 @@
 
 class OffersController < ApplicationController
 
-  before_filter :authenticate_user!, except: [:index, :show]
+  before_filter :authenticate_user!, except: [:index]
   before_filter :find_offer, except: [:index, :new, :create]
   before_filter :check_owner, except: [:index, :show, :new, :create]
 
