@@ -9,12 +9,13 @@ class Offer < ActiveRecord::Base
 
   belongs_to :user
   has_many :photos
+  has_many :favorites, dependent: :destroy
 
-  validates :title, presence: true, if: :published?
-  validates :country, presence: true, if: :published?
-  validates :city, presence: true, if: :published?
-  validates :street, presence: true, if: :published?
-  validates :price, presence: true, numericality: {greater_than: 0}, if: :published?
+  validates :title, presence: true
+  validates :country, presence: true
+  validates :city, presence: true
+  validates :street, presence: true
+  validates :price, presence: true, numericality: {greater_than: 0}
   validates :state, presence: true, inclusion: STATES
   validates :kind, presence: true, inclusion: KINDS
   validates :property_type, presence: true, inclusion: PROPERTY_TYPES
@@ -36,7 +37,7 @@ class Offer < ActiveRecord::Base
   end
 
   def gmaps4rails_infowindow
-    "<h3><a id='offer_#{id}' href='#'>#{title}</a></h3> <img src = '#{photos.first.image.thumb.url}' /> <p>#{summary}</p><p>#{gmaps4rails_address}</p><p>#{price}</p>"
+    "<h3><a id='offer_#{id}' class='offer_link' href='offers/#{id}'>#{title}</a></h3> <img src = '#{photos.first.image.thumb.url}' /> <p>#{summary}</p><p>#{gmaps4rails_address}</p><p>#{price}</p>"
   end
 
   def owned_by?(user)

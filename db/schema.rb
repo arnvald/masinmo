@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111111144717) do
+ActiveRecord::Schema.define(:version => 20111128085802) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -41,6 +41,14 @@ ActiveRecord::Schema.define(:version => 20111111144717) do
     t.integer "placement_id"
     t.string  "banner"
   end
+
+  create_table "favorites", :force => true do |t|
+    t.integer "user_id"
+    t.integer "offer_id"
+  end
+
+  add_index "favorites", ["offer_id"], :name => "index_favorites_on_offer_id"
+  add_index "favorites", ["user_id"], :name => "index_favorites_on_user_id"
 
   create_table "offers", :force => true do |t|
     t.integer "user_id"
