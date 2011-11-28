@@ -1,7 +1,5 @@
 class AddBannerToContracts < ActiveRecord::Migration
   def change
-    change_table :contracts do |t|
-      t.string :banner
-    end
+    add_column :contracts, :banner, :string
   end
 end

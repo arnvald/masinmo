@@ -1,8 +1,6 @@
 class AddStateAndPriceToOffers < ActiveRecord::Migration
   def change
-    change_table :offers do |t|
-      t.float :price, :null => false, :default => 0.0
-      t.string :state, :null => false, :default => "draft"
-    end
+    add_column :offers, :price, :float, null: false, default: 0.0
+    add_column :offers, :state, :string, null: false, default: "draft"
   end
 end

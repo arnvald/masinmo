@@ -1,11 +1,9 @@
 class AddDetailsToOffers < ActiveRecord::Migration
   def change
-    change_table :offers do |t|
-      t.integer :rooms
-      t.integer :bathrooms
-      t.string :property_type
-      t.boolean :internet, default: false
-      t.boolean :furnished, default: false
-    end
+    add_column :offers, :rooms, :integer
+    add_column :offers, :bathrooms, :integer
+    add_column :offers, :property_type, :string
+    add_column :offers, :internet, :boolean, default: false
+    add_column :offers, :furnished, :boolean, default: false
   end
 end

@@ -1,10 +1,8 @@
 class AddIndexesToOffers < ActiveRecord::Migration
   def change
-    change_table :offers do |t|
-      t.index :state
-      t.index :user_id
-      t.index :country
-      t.index :city
-    end
+    add_index :offers, :state
+    add_index :offers, :user_id
+    add_index :offers, :country
+    add_index :offers, :city
   end
 end

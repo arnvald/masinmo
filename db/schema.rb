@@ -69,8 +69,8 @@ ActiveRecord::Schema.define(:version => 20111128085802) do
     t.integer "rooms"
     t.integer "bathrooms"
     t.string  "property_type"
-    t.boolean "internet"
-    t.boolean "furnished"
+    t.boolean "internet",      :default => false
+    t.boolean "furnished",     :default => false
   end
 
   add_index "offers", ["city"], :name => "index_offers_on_city"

@@ -1,9 +1,7 @@
 class AddGmapsToOffers < ActiveRecord::Migration
   def change
-    change_table :offers do |t|
-      t.float :latitude
-      t.float :longitude
-      t.boolean :gmaps
-    end
+    add_column :offers, :latitude, :float
+    add_column :offers, :longitude, :float
+    add_column :offers, :gmaps, :boolean
   end
 end
