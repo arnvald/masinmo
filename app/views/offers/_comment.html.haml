@@ -1,0 +1,5 @@
+.comment
+  %p
+    = comment.user.try(:email)
+    = comment.created_at
+  %p= comment.body

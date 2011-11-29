@@ -12,7 +12,9 @@ Inmo::Application.routes.draw do
   match "search/cities" => "search#cities"
   match "search/regions" => "search#regions"
 
-  resources :offers
+  resources :offers do 
+    resources :comments
+  end
 
   resources :users do
     resources :offers do

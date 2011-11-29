@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
   has_many :offers
   has_many :favorites, dependent: :destroy
+  has_many :comments, dependent: :nullify
 
   def is_admin?
     true
