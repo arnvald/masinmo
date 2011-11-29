@@ -11,7 +11,7 @@
     = f.input :description
     = f.input :kind, collection: Offer::KINDS, include_blank: false, required: false
     = f.input :property_type, collection: Offer::PROPERTY_TYPES, include_blank: false
-    = f.input :price
+    = f.input :price, label: "price (in EUR)"
   #tab2.tab.hidden
     = f.input :country
     = f.input :region

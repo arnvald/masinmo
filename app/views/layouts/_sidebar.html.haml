@@ -1,0 +1,30 @@
+%h4= link_to "New offer", new_offer_path if current_user
+
+%p
+- if map_view?
+  = link_to "List view", url_for(map: false, q: params[:q])
+- else
+  = link_to "Map view", url_for(map: true, q: params[:q])
+
+= search_form_for @search do |f|
+  = f.label :title_cont
+  = f.text_field :title_cont
+  = f.label :country_eq
+  = f.select :country_eq, [""] + @countries
+  = f.label :region_eq
+  = f.select :region_eq, [""] + @regions
+  = f.label :city_cont
+  = f.select :city_cont, [""] + @cities
+  = f.label :street_cont
+  = f.text_field :street_cont
+  = f.label :price_gt
+  = f.text_field :price_gt
+  = f.label :price_lt
+  = f.text_field :price_lt
+  = f.label :rooms_eq
+  = f.text_field :rooms_eq
+  = f.label :bathrooms_eq
+  = f.text_field :bathrooms_eq
+  = f.label :kind_eq
+  = f.select :kind_eq, {"sell or rent" => "", "sell" => "sell", "rent" => "rent"}
+  = f.submit

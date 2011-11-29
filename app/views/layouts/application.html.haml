@@ -15,6 +15,7 @@
     .container-fluid
       .sidebar
         .well
+          = render "/layouts/sidebar"
           = yield :sidebar
       .content
         - flash.each do |name, msg|

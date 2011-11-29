@@ -25,7 +25,7 @@
   .info_details
     %p
       %strong Price
-      = @offer.price
+      = number_to_currency @offer.price
     %p
       %strong Description
       = @offer.description
