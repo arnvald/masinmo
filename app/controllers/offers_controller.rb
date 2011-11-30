@@ -16,14 +16,18 @@ class OffersController < ApplicationController
     if params[:map] != "true"
       @offers = @offers.page(params[:page] || 1)
     end
+    #TODO change this shit
     @countries = clear_results Offer.published.map(&:country)
     @regions = clear_results Offer.published.map(&:region)
     @cities = clear_results Offer.published.map(&:city)
   end
 
-  def show; end
+  def show
+    @comment = @offer.comments.build
+  end
 
   def new
+    #TODO make flexible number of photos
     @offer = Offer.new
     3.times {@offer.photos.build}
   end
@@ -72,10 +76,6 @@ class OffersController < ApplicationController
       flash[:error] = "It's not your offer"
       redirect_to offers_path
     end
-  end
-
-  def clear_results(arr)
-    arr.uniq.select {|x| !x.blank?}
   end
 
 end

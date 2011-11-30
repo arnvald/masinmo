@@ -13,7 +13,7 @@ Inmo::Application.routes.draw do
   match "search/regions" => "search#regions"
 
   resources :offers do 
-    resources :comments
+    resources :comments, :only => [:create, :destroy]
   end
 
   resources :users do
