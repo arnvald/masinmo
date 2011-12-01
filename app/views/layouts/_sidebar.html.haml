@@ -1,10 +1,6 @@
 %h4= link_to "New offer", new_offer_path if current_user
 
-%p
-- if map_view?
-  = link_to "List view", url_for(map: false, q: params[:q])
-- else
-  = link_to "Map view", url_for(map: true, q: params[:q])
+= yield :sidebar
 
 = search_form_for @search do |f|
   = f.label :title_cont
