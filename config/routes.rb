@@ -17,6 +17,7 @@ Inmo::Application.routes.draw do
   end
 
   resources :users do
+    resources :favorites, :only => [:create, :destroy]
     resources :offers do
       member do
         put :publish
