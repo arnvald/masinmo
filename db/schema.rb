@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111129205756) do
+ActiveRecord::Schema.define(:version => 20111206142354) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -62,26 +62,28 @@ ActiveRecord::Schema.define(:version => 20111129205756) do
   add_index "favorites", ["user_id"], :name => "index_favorites_on_user_id"
 
   create_table "offers", :force => true do |t|
-    t.integer "user_id"
-    t.string  "title"
-    t.string  "summary"
-    t.string  "description"
-    t.string  "street"
-    t.string  "building"
-    t.string  "city"
-    t.string  "region"
-    t.string  "country"
-    t.float   "price",         :default => 0.0,     :null => false
-    t.string  "state",         :default => "draft", :null => false
-    t.float   "latitude"
-    t.float   "longitude"
-    t.boolean "gmaps"
-    t.string  "kind",          :default => "sell",  :null => false
-    t.integer "rooms"
-    t.integer "bathrooms"
-    t.string  "property_type"
-    t.boolean "internet",      :default => false
-    t.boolean "furnished",     :default => false
+    t.integer  "user_id"
+    t.string   "title"
+    t.string   "summary"
+    t.string   "description"
+    t.string   "street"
+    t.string   "building"
+    t.string   "city"
+    t.string   "region"
+    t.string   "country"
+    t.float    "price",         :default => 0.0,     :null => false
+    t.string   "state",         :default => "draft", :null => false
+    t.float    "latitude"
+    t.float    "longitude"
+    t.boolean  "gmaps"
+    t.string   "kind",          :default => "sell",  :null => false
+    t.integer  "rooms"
+    t.integer  "bathrooms"
+    t.string   "property_type"
+    t.boolean  "internet",      :default => false
+    t.boolean  "furnished",     :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "offers", ["city"], :name => "index_offers_on_city"
