@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_many :comments, dependent: :nullify
 
   def is_admin?
-    true
+    admin == true
   end
 
   def to_s
