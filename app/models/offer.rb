@@ -4,7 +4,6 @@ class Offer < ActiveRecord::Base
   KINDS = ["sell", "rent"]
   PROPERTY_TYPES = ["house", "flat"]
 
-  acts_as_gmappable check_process: :prevent_geocoding, msg: "Wrong address"
   paginates_per 20
 
   belongs_to :user
@@ -12,7 +11,7 @@ class Offer < ActiveRecord::Base
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  validates :title, presence: true
+  validates :title, length: {minimum: 15, maximum: 100}
   validates :country, presence: true
   validates :city, presence: true
   validates :street, presence: true
@@ -20,6 +19,8 @@ class Offer < ActiveRecord::Base
   validates :state, presence: true, inclusion: STATES
   validates :kind, presence: true, inclusion: KINDS
   validates :property_type, presence: true, inclusion: PROPERTY_TYPES
+
+  acts_as_gmappable check_process: :prevent_geocoding, msg: "Wrong address"
 
   scope :published, where(state: "published")
   scope :drafts, where(state: "draft")
