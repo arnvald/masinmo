@@ -38,7 +38,7 @@ class Offer < ActiveRecord::Base
   end
 
   def gmaps4rails_infowindow
-    "<h3><a id='offer_#{id}' class='offer_link' href='offers/#{id}'>#{title}</a></h3> <img src = '#{photos.first.image.thumb.url}' /> <p>#{summary}</p><p>#{gmaps4rails_address}</p><p>#{price}</p>"
+    ActionView::Base.new(Rails.configuration.paths.app.views.first).render(:partial => "offers/marker", :locals => {:offer => self}).gsub("\n","")
   end
 
   def owned_by?(user)
