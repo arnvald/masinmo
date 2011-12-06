@@ -2,7 +2,7 @@
 #
 # Use this as the base for the locale file of your language.
 
-"en-US":
+en:
   date:
     formats:
       default: "%Y-%m-%d"
@@ -86,8 +86,8 @@
 
     currency:
       format:
-        format: "%u%n"
-        unit: "EUR"
+        format: "%n%u"
+        unit: "€"
         separator: "."
         delimiter: ","
         precision: 2
