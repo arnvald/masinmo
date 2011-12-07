@@ -1,6 +1,6 @@
 - (presenter = OfferPresenter.new(offer, self, current_user))
 .span16.offer{:id => "offer_#{offer.id}"}
-  %p.pull-left= image_tag offer.photos.first.image.search unless offer.photos.empty?
+  %p.pull-left= image_tag offer.photos.first.image.search.url unless offer.photos.empty?
   %h3= link_to offer.title, offer_path(offer)
   = presenter.add_favorite_link
   = presenter.delete_favorite_link
