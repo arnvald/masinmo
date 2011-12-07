@@ -5,8 +5,13 @@
     %title +inMO
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
     = stylesheet_link_tag "application"
-    = javascript_include_tag "application"
     = csrf_meta_tag
+    = javascript_include_tag "application"
+    :javascript
+      $(document).ajaxSend(function(e, xhr, options) {
+        var token = $("meta[name='csrf-token']").attr("content");
+        xhr.setRequestHeader("X-CSRF-Token", token);
+      });
     = yield :head
 
   %body
