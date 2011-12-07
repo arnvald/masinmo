@@ -56,7 +56,7 @@
 
 #comments
   %h2 Comments
-  - @offer.comments.each do |comment|
+  - @offer.comments.order_by("created_at desc").each do |comment|
     = render "comment", :comment => comment
 
 #new_comment
