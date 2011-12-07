@@ -2,25 +2,26 @@
 
 class FavoritesController < ApplicationController
 
+  before_filter :authenticate_user!
+
   def create
     offer = Offer.find(params[:offer])
-    if current_user.favorite_offers.include?(offer)
-      flash[:notice] = "This offer is already in your favorites"
+    if @favorite = current_user.favorites.find_by_offer_id(offer.id)
+      flash.now[:notice] = "Already favorite"
     else
       @favorite = current_user.favorites.create!({offer: offer})
-      flash[:notice] = "Favorite added"
+      flash.now[:notice] = "Favorite added"
     end
   end
 
   def destroy
     @favorite = Favorite.find(params[:id])
     @favorite.destroy
-    flash[:notice] = "Favorite deleted"
+    flash.now[:notice] = "Favorite deleted"
   end
 
   def index
-    @offers = current_user.favorited_offers
+    @offers = current_user.favorite_offers
     render template: "offers/index"
   end
-
 end

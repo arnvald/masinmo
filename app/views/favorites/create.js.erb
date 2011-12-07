@@ -1,0 +1,7 @@
+var div = $("#offer_<%=@favorite.offer_id%>")
+var notify= $("<span><%=flash[:notice]%></span>")
+var delete_link = $('<%=link_to "delete favorite", favorite_path(@favorite), class: "del_favorite", method: :delete, remote: true%>')
+div.children("a.add_favorite").hide()
+notify.insertAfter(div.children("h3"))
+delete_link.insertAfter(div.children("h3"))
+notify.fadeOut(1000)

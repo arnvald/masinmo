@@ -1,0 +1,6 @@
+var div = $("#offer_<%=@favorite.offer_id%>")
+var notify= $("<span><%=flash[:notice]%></span>")
+div.children("a.del_favorite").hide()
+div.children("a.add_favorite").show()
+notify.insertAfter(div.children("a.add_favorite"))
+notify.fadeOut(1000)
