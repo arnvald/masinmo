@@ -21,7 +21,7 @@ class FavoritesController < ApplicationController
   end
 
   def index
-    @offers = current_user.favorite_offers
+    @offers = current_user.favorite_offers.page(params[:page] || 1)
     render template: "offers/index"
   end
 end
