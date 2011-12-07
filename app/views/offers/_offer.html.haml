@@ -1,18 +1,14 @@
-.span16.offer{:id => offer.object_id}
+- (presenter = OfferPresenter.new(offer, self, current_user))
+.span16.offer{:id => "offer_#{offer.id}"}
   -#%p.pull-left= image_tag offer.photos.first.image.search unless offer.photos.empty?
   %h3= link_to offer.title, offer_path(offer)
+  = presenter.add_favorite_link
+  = presenter.delete_favorite_link
   %p= offer.gmaps4rails_address
   %p= offer.summary
   %p= "Price: #{number_to_currency offer.price}"
-
-
-  - if current_user && (offer.owned_by?(current_user) || current_user.admin?)
+  - if presenter.allowed_to_edit?
     %p
-      - if offer.draft?
-        = link_to 'publish', publish_user_offer_path(current_user, offer), method: :put
-      - elsif offer.published?
-        = link_to 'hide', hide_user_offer_path(current_user, offer), method: :put
-      - else
-        Offer expired
+      = presenter.change_state_link
       = link_to 'edit', edit_user_offer_path(current_user, offer)
       = link_to 'delete', user_offer_path(current_user, offer), method: :delete, confirm: "Are you sure?"

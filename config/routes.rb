@@ -7,22 +7,22 @@ Inmo::Application.routes.draw do
     get "sign_up", :to => "devise/registrations#new"
   end
 
-  root :to => "main#index"
+  root :to => "offers#index"
 
   match "search/cities" => "search#cities"
   match "search/regions" => "search#regions"
 
   resources :offers do 
     resources :comments, :only => [:create, :destroy]
+    member do
+      put :publish
+      put :hide
+    end
   end
 
+  resources :favorites, :only => [:index, :create, :destroy]
+
   resources :users do
-    resources :favorites, :only => [:create, :destroy]
-    resources :offers do
-      member do
-        put :publish
-        put :hide
-      end
-    end
+    resources :offers
   end
 end
