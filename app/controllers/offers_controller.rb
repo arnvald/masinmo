@@ -14,7 +14,7 @@ class OffersController < ApplicationController
     end
     @offers = @search.result
     if params[:map] != "true"
-      @offers = @offers.page(params[:page] || 1)
+      @offers = @offers.page(params[:page] || 1).order(params[:s] || "created_at desc")
     end
     #TODO change this shit
     @countries = clear_results Offer.published.map(&:country)

@@ -1,68 +1,69 @@
 = link_to "Back to offers", offers_path
-%h2= @offer.title
-%h4= @offer.summary
-.row.show-grid
-  - @offer.photos.each do |photo|
-    .span-one-third
-      =link_to image_tag(photo.image.thumb.url), photo.image.url, class: "show_photo"
-.offer_details
-  .location_details
-    %p
-      %strong Country
-      = @offer.country
-    %p
-      %strong Region
-      = @offer.region
-    %p
-      %strong City
-      = @offer.city
-    %p
-      %strong Street
-      = @offer.street
-    %p
-      %strong Building
-      = @offer.building
-  .info_details
-    %p
-      %strong Price
-      = number_to_currency @offer.price
-    %p
-      %strong Description
-      = @offer.description
-    %p
-      %strong Rooms
-      = @offer.rooms
-    %p
-      %strong Bathrooms
-      = @offer.bathrooms
-    %p
-      %strong Property type
-      = @offer.property_type
-    %p
-      %strong Internet
-      = @offer.internet
+.offer{id: @offer.object_id}
+  %h2= @offer.title
+  %h4= @offer.summary
+  .row.show-grid
+    - @offer.photos.each do |photo|
+      .span-one-third
+        =link_to image_tag(photo.image.thumb.url), photo.image.url, class: "show_photo"
+  .offer_details
+    .location_details
+      %p
+        %strong Country
+        = @offer.country
+      %p
+        %strong Region
+        = @offer.region
+      %p
+        %strong City
+        = @offer.city
+      %p
+        %strong Street
+        = @offer.street
+      %p
+        %strong Building
+        = @offer.building
+    .info_details
+      %p
+        %strong Price
+        = number_to_currency @offer.price
+      %p
+        %strong Description
+        = @offer.description
+      %p
+        %strong Rooms
+        = @offer.rooms
+      %p
+        %strong Bathrooms
+        = @offer.bathrooms
+      %p
+        %strong Property type
+        = @offer.property_type
+      %p
+        %strong Internet
+        = @offer.internet
 
-    %p
-      %strong Furnished
-      = @offer.furnished
+      %p
+        %strong Furnished
+        = @offer.furnished
 
-  .contact_details
-    %p
-      %strong Email
-      = @offer.user.email
-  .map
-    = gmaps(markers: {data: [@offer].to_gmaps4rails})
+    .contact_details
+      %p
+        %strong Email
+        = @offer.user.email
+    .map
+      = gmaps(markers: {data: [@offer].to_gmaps4rails})
 
-  #comments
-    %h2 Comments
-    - @offer.comments.each do |comment|
-      = render "comment", :comment => comment
+#comments
+  %h2 Comments
+  - @offer.comments.each do |comment|
+    = render "comment", :comment => comment
 
-  #new_comment
-    %h3 Add new comment
-    = simple_form_for [@offer, Comment.new] do |f|
-      = f.input :body
-      = f.button :submit
+#new_comment
+  %h3 Add new comment
+  = simple_form_for [@offer, Comment.new] do |f|
+    = f.input :body
+    = f.button :submit
 
 - content_for :footer do
   = yield :scripts
