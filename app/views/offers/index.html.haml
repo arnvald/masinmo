@@ -1,9 +1,5 @@
 = content_for :sidebar do
-  %p
-  - if map_view?
-    = link_to "List view", url_for(map: false, q: params[:q])
-  - else
-    = link_to "Map view", url_for(map: true, q: params[:q])
+  %p= switch_view_link
 
 - if map_view?
   = show_map(@offers)
@@ -14,6 +10,7 @@
   = sort_link @search, :city
   = sort_link @search, :region
   = sort_link @search, :country
+  = sort_link @search, :created_at
   %div#offers.row.show-grid
     - if @offers.empty? and params[:q]
       Sorry, nothing was found

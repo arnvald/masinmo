@@ -10,4 +10,12 @@ module ApplicationHelper
     params[:map] == "true"
   end
 
+  def switch_view_link
+    if map_view?
+      link_to "List view", url_for(map: false, q: params[:q])
+    else
+      link_to "Map view", url_for(map: true, q: params[:q])
+    end
+  end
+
 end

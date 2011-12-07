@@ -27,10 +27,6 @@ module LayoutHelper
     controller.controller_name == name ? "active" : ""
   end
 
-  def home_nav_class
-    nav_class("main")
-  end
-
   def offers_nav_class(my = false)
     return "" unless controller.controller_name == "offers"
     return "" unless current_user
@@ -40,5 +36,9 @@ module LayoutHelper
 
   def my_offers_nav_class
     offers_nav_class(true)
+  end
+
+  def favorites_nav_class
+    nav_class("favorites")
   end
 end
