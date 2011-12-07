@@ -24,7 +24,7 @@ class Offer < ActiveRecord::Base
 
   acts_as_gmappable check_process: :prevent_geocoding, msg: "Wrong address"
 
-  scope :published, lambda {where("state = ? and (expiry_date >= ? or expiry_date is null)", 'published', Date.today)}
+  scope :published, lambda {where("state = ? and expiry_date >= ?", 'published', Date.today)}
   scope :drafts, where(state: "draft")
   scope :archived, where(state: "archived")
 
