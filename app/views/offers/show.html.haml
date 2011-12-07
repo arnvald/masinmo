@@ -56,12 +56,13 @@
 
 #comments
   %h2 Comments
-  - @offer.comments.order_by("created_at desc").each do |comment|
+  - @offer.comments.order("created_at desc").each do |comment|
     = render "comment", :comment => comment
 
 #new_comment
   %h3 Add new comment
   = simple_form_for [@offer, Comment.new] do |f|
+    = f.input :title
     = f.input :body
     = f.button :submit
 
