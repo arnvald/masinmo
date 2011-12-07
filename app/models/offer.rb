@@ -6,6 +6,8 @@ class Offer < ActiveRecord::Base
 
   paginates_per 20
 
+  before_create :set_expiry_date
+
   belongs_to :user
   has_many :photos
   has_many :favorites, dependent: :destroy
@@ -68,5 +70,9 @@ class Offer < ActiveRecord::Base
   private
   def prevent_geocoding
     country.blank? && city.blank? && street.blank?
+  end
+
+  def set_expiry_date
+    expiry_date = Date.today + 2.weeks
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111206142354) do
+ActiveRecord::Schema.define(:version => 20111207013931) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(:version => 20111206142354) do
     t.boolean  "furnished",     :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "expiry_date",                        :null => false
   end
 
   add_index "offers", ["city"], :name => "index_offers_on_city"
