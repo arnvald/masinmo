@@ -219,6 +219,8 @@ en:
           other:  "%{count} errors prohibited this %{model} from being saved"
         body: "There were problems with the following fields:"
 
+      message: "Correct the following errors and try again:"
+
       messages:
         taken: "has already been taken"
         record_invalid: "Validation failed: %{errors}"
