@@ -1,6 +1,9 @@
+- @offer = OfferPresenter.new(@offer, self, current_user)
 = link_to "Back to offers", offers_path
-.offer{id: @offer.object_id}
-  %h2= @offer.title
+.offer{id: "offer_#{@offer.id}"}
+  %h2.title= @offer.title
+  = @offer.add_favorite_link
+  = @offer.delete_favorite_link
   %h4= @offer.summary
   .row.show-grid
     - @offer.photos.each do |photo|
@@ -8,44 +11,32 @@
         =link_to image_tag(photo.image.thumb.url), photo.image.url, class: "show_photo"
   .offer_details
     .location_details
-      %p
-        %strong Country
-        = @offer.country
-      %p
-        %strong Region
-        = @offer.region
-      %p
-        %strong City
-        = @offer.city
-      %p
-        %strong Street
-        = @offer.street
-      %p
-        %strong Building
-        = @offer.building
+      = @offer.present_attr :country
+      = @offer.present_attr :region
+      = @offer.present_attr :city
+      = @offer.present_attr :street
+      = @offer.present_attr :building
     .info_details
       %p
         %strong Price
         = number_to_currency @offer.price
-      %p
-        %strong Description
-        = @offer.description
-      %p
-        %strong Rooms
-        = @offer.rooms
-      %p
-        %strong Bathrooms
-        = @offer.bathrooms
-      %p
-        %strong Property type
-        = @offer.property_type
-      %p
-        %strong Internet
-        = @offer.internet
-
-      %p
-        %strong Furnished
-        = @offer.furnished
+      = @offer.present_attr :property_type
+      = @offer.present_attr :description
+      = @offer.present_attr :rooms
+      = @offer.present_attr :bathrooms
+      = @offer.present_attr :storage_room
+      = @offer.present_attr :balcony
+      = @offer.present_attr :terrace
+      = @offer.present_attr :furnished
+      = @offer.present_attr :dishwasher
+      = @offer.present_attr :washing_machine
+      = @offer.present_attr :microwave
+      = @offer.present_attr :tv
+      = @offer.present_attr :cable_tv
+      = @offer.present_attr :internet
+      = @offer.present_attr :tennis_court
+      = @offer.present_attr :gym
+      = @offer.present_attr :swimming_pool
 
     .contact_details
       %p
@@ -56,12 +47,11 @@
 
 #comments
   %h2 Comments
-  - @offer.comments.order("created_at desc").each do |comment|
-    = render "comment", :comment => comment
+  = render @comments
 
 #new_comment
   %h3 Add new comment
-  = simple_form_for [@offer, Comment.new] do |f|
+  = simple_form_for [@offer.offer, Comment.new] do |f|
     = f.input :title
     = f.input :body
     = f.button :submit

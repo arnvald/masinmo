@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111207115622) do
+ActiveRecord::Schema.define(:version => 20111209125954) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -72,20 +72,33 @@ ActiveRecord::Schema.define(:version => 20111207115622) do
     t.string   "city"
     t.string   "region"
     t.string   "country"
-    t.float    "price",         :default => 0.0,     :null => false
-    t.string   "state",         :default => "draft", :null => false
+    t.float    "price",           :default => 0.0,     :null => false
+    t.string   "state",           :default => "draft", :null => false
     t.float    "latitude"
     t.float    "longitude"
     t.boolean  "gmaps"
-    t.string   "kind",          :default => "sell",  :null => false
+    t.string   "kind",            :default => "sell",  :null => false
     t.integer  "rooms"
     t.integer  "bathrooms"
     t.string   "property_type"
-    t.boolean  "internet",      :default => false
-    t.boolean  "furnished",     :default => false
+    t.boolean  "internet",        :default => false
+    t.boolean  "furnished",       :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.date     "expiry_date",                        :null => false
+    t.date     "expiry_date",                          :null => false
+    t.boolean  "dishwasher",      :default => false,   :null => false
+    t.boolean  "washing_machine", :default => false,   :null => false
+    t.boolean  "tv",              :default => false,   :null => false
+    t.boolean  "microwave",       :default => false,   :null => false
+    t.boolean  "storage_room",    :default => false,   :null => false
+    t.boolean  "terrace",         :default => false,   :null => false
+    t.boolean  "balcony",         :default => false,   :null => false
+    t.boolean  "cable_tv",        :default => false,   :null => false
+    t.boolean  "heating",         :default => false,   :null => false
+    t.boolean  "garage",          :default => false,   :null => false
+    t.boolean  "gym",             :default => false,   :null => false
+    t.boolean  "tennis_court",    :default => false,   :null => false
+    t.boolean  "swimming_pool",   :default => false,   :null => false
   end
 
   add_index "offers", ["city"], :name => "index_offers_on_city"

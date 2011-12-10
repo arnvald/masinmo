@@ -42,7 +42,7 @@ class Offer < ActiveRecord::Base
   end
 
   def gmaps4rails_infowindow
-    ActionView::Base.new(Rails.configuration.paths.app.views.first).render(:partial => "offers/marker", :locals => {:offer => self}).gsub("\n","")
+    ActionView::Base.new(Rails.configuration.paths.app.views.first).render(:partial => "offers/marker", :locals => {:offer => self}).gsub("\n","").gsub('"','\'')
   end
 
   def owned_by?(user)
@@ -74,6 +74,6 @@ class Offer < ActiveRecord::Base
   end
 
   def set_expiry_date
-    expiry_date = Date.today + 2.weeks
+    self.expiry_date = Date.today + 2.weeks
   end
 end

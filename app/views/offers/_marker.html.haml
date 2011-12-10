@@ -1,3 +1,6 @@
+-# TODO: find the solution to use offer_path here
+%p= link_to offer.title, "/offers/#{offer.id}"
+%p= image_tag offer.photos.first.image.search.url unless offer.photos.empty?
 %p= offer.summary
 %p= offer.gmaps4rails_address
 %p= number_to_currency offer.price

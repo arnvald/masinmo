@@ -1,8 +1,9 @@
 class OfferPresenter
 
   require 'delegate'
+  attr_reader :offer
 
-  def initialize(offer, view, user)
+  def initialize(offer, view, user=nil)
     @offer = offer
     @user = user
     @view = view
@@ -35,6 +36,17 @@ class OfferPresenter
   def allowed_to_edit?
     return false unless @user
     @user.admin? || offer.owned_by?(@user)
+  end
+
+  def present_attr(attr)
+    helper.raw("""
+    <p>
+      <strong>
+      #{attr.to_s.capitalize.gsub('_',' ')}:
+      </strong>
+      #{@offer.send(attr)}
+    </p>
+    """)
   end
 
 

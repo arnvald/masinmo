@@ -22,6 +22,19 @@
     = f.input :bathrooms
     = f.input :internet
     = f.input :furnished
+    = f.input :dishwasher
+    = f.input :washing_machine
+    = f.input :tv
+    = f.input :cable_tv
+    = f.input :microwave
+    = f.input :balcony
+    = f.input :terrace
+    = f.input :tennis_court
+    = f.input :gym
+    = f.input :swimming_pool
+    = f.input :heating
+    = f.input :storage_room
+    = f.input :garage
   #tab4.tab.hidden
     = f.simple_fields_for :photos do |fp|
       .input= image_tag fp.object.image.thumb.url

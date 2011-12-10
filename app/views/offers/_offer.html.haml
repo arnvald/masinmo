@@ -1,14 +1,14 @@
-- (presenter = OfferPresenter.new(offer, self, current_user))
+- (offer = OfferPresenter.new(offer, self, current_user))
 .span16.offer{:id => "offer_#{offer.id}"}
   %p.pull-left= image_tag offer.photos.first.image.search.url unless offer.photos.empty?
-  %h3= link_to offer.title, offer_path(offer)
-  = presenter.add_favorite_link
-  = presenter.delete_favorite_link
+  %h3.title= link_to offer.title, offer_path(offer.offer)
+  = offer.add_favorite_link
+  = offer.delete_favorite_link
   %p= offer.gmaps4rails_address
   %p= offer.summary
   %p= "Price: #{number_to_currency offer.price}"
-  - if presenter.allowed_to_edit?
+  - if offer.allowed_to_edit?
     %p
-      = presenter.change_state_link
-      = link_to 'edit', edit_user_offer_path(current_user, offer)
-      = link_to 'delete', user_offer_path(current_user, offer), method: :delete, confirm: "Are you sure?"
+      = offer.change_state_link
+      = link_to 'edit', edit_user_offer_path(current_user, offer.offer)
+      = link_to 'delete', user_offer_path(current_user, offer.offer), method: :delete, confirm: "Are you sure?"

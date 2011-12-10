@@ -3,5 +3,5 @@
     = comment.user.try(:email)
     = comment.created_at
   %p= comment.body
-  - if current_user.admin?
+  - if current_user && current_user.admin?
     = link_to 'Delete comment', offer_comment_path(@offer, comment), method: :delete
