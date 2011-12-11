@@ -16,10 +16,6 @@ class OffersController < ApplicationController
     if params[:map] != "true"
       @offers = @offers.page(params[:page] || 1).order(params[:s] || "created_at desc")
     end
-    #TODO change this shit
-    @countries = clear_results Offer.published.map(&:country)
-    @regions = clear_results Offer.published.map(&:region)
-    @cities = clear_results Offer.published.map(&:city)
   end
 
   def show
