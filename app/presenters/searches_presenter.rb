@@ -15,9 +15,30 @@ class SearchesPresenter
     end
   end
 
+  def prices_ranges
+    [ 
+      ["0-500", 0],
+      ["500-1000", 1],
+      ["1000-2000", 2],
+      ["2000-5000", 3],
+      ["5000-10000", 4],
+      ["10000-100000", 5],
+      ["100000-1000000", 6]
+    ]
+  end
+
+  def bathroom_ranges
+    [
+      ["1", 1],
+      ["2", 2],
+      ["3 or more", 3]
+    ]
+  end
+
   private
 
   def offers_data(attr)
     Offer.published.map {|o| o.send(attr)}
   end
+
 end

@@ -15,13 +15,13 @@
   = f.label :street_cont
   = f.text_field :street_cont
   = f.label :price_between
-  = select_tag :choose_price, options_for_select(prices_ranges), include_blank: true
+  = select_tag :choose_price, options_for_select(@search.prices_ranges), include_blank: true
   = f.hidden_field :price_gt
   = f.hidden_field :price_lt
   = f.label :rooms_eq
   = f.text_field :rooms_eq
   = f.label :bathrooms_eq
-  = select_tag :choose_bathrooms, options_for_select(bathroom_ranges), include_blank: true
+  = select_tag :choose_bathrooms, options_for_select(@search.bathroom_ranges), include_blank: true
   = f.hidden_field :bathrooms_eq
   = f.hidden_field :bathrooms_gteq
   = f.label :kind_eq
