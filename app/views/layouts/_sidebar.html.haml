@@ -13,10 +13,10 @@
   = f.select :city_cont, [""] + @cities
   = f.label :street_cont
   = f.text_field :street_cont
-  = f.label :price_gt
-  = f.text_field :price_gt
-  = f.label :price_lt
-  = f.text_field :price_lt
+  = f.label :price_between
+  = select_tag :choose_price, options_for_select(prices_ranges), include_blank: true
+  = f.hidden_field :price_gt
+  = f.hidden_field :price_lt
   = f.label :rooms_eq
   = f.text_field :rooms_eq
   = f.label :bathrooms_eq
