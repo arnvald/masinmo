@@ -20,7 +20,9 @@
   = f.label :rooms_eq
   = f.text_field :rooms_eq
   = f.label :bathrooms_eq
-  = f.text_field :bathrooms_eq
+  = select_tag :choose_bathrooms, options_for_select(bathroom_ranges), include_blank: true
+  = f.hidden_field :bathrooms_eq
+  = f.hidden_field :bathrooms_gteq
   = f.label :kind_eq
   = f.select :kind_eq, {"sell or rent" => "", "sell" => "sell", "rent" => "rent"}
   = f.submit

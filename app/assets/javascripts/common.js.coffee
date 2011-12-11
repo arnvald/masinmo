@@ -15,6 +15,16 @@ $(document).ready ->
     $("#q_price_gt").val(values[0])
     $("#q_price_lt").val(values[1])
 
+  $('#choose_bathrooms').change ->
+    MIN_GT_VAL = 3
+    value = $('#choose_bathrooms option:selected').val()
+    if value >= MIN_GT_VAL
+      $('#q_bathrooms_eq').val('')
+      $('#q_bathrooms_gteq').val(value)
+    else
+      $('#q_bathrooms_eq').val(value)
+      $('#q_bathrooms_gteq').val('')
+
 fulfil_select = (name, data) ->
   $(name).html "<option value=''></option>"
   $.each data, (key, val) ->

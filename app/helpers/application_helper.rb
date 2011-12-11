@@ -30,4 +30,12 @@ module ApplicationHelper
     ]
   end
 
+  def bathroom_ranges
+    [
+      ["1", 1],
+      ["2", 2],
+      ["3 or more", 3]
+    ]
+  end
+
 end
