@@ -52,8 +52,11 @@ class OffersController < ApplicationController
   end
 
   def publish
-    @offer.publish!
-    redirect_to user_offers_path(current_user)
+    if @offer.publish!
+      redirect_to user_offers_path(current_user)
+    else
+      render action: :edit
+    end
   end
 
   def hide
