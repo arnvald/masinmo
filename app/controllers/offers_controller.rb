@@ -7,19 +7,13 @@ class OffersController < ApplicationController
   before_filter :check_owner, except: [:index, :show, :new, :create]
 
   def index
-    if params[:user_id] && current_user && current_user.id == params[:user_id].to_i
-      @search = current_user.offers.search(params[:q])
-    else
-      @search = Offer.published.search(params[:q])
-    end
+    all_offers = my_offers? ? current_user.offers : Offer.published
+    @search = all_offers.search(params[:q])
+
     @offers = @search.result
     if params[:map] != "true"
       @offers = @offers.page(params[:page] || 1).order(params[:s] || "created_at desc")
     end
-    #TODO change this shit
-    @countries = clear_results Offer.published.map(&:country)
-    @regions = clear_results Offer.published.map(&:region)
-    @cities = clear_results Offer.published.map(&:city)
   end
 
   def show
@@ -58,8 +52,11 @@ class OffersController < ApplicationController
   end
 
   def publish
-    @offer.publish!
-    redirect_to user_offers_path(current_user)
+    if @offer.publish!
+      redirect_to user_offers_path(current_user)
+    else
+      render action: :edit
+    end
   end
 
   def hide
@@ -77,6 +74,10 @@ class OffersController < ApplicationController
       flash[:error] = "It's not your offer"
       redirect_to offers_path
     end
+  end
+
+  def my_offers?
+    params[:user_id] && current_user && current_user.id == params[:user_id].to_i
   end
 
 end

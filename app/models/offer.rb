@@ -14,15 +14,15 @@ class Offer < ActiveRecord::Base
   has_many :comments, dependent: :destroy
 
   validates :title, length: {minimum: 15, maximum: 100}
-  validates :country, presence: true
-  validates :city, presence: true
-  validates :street, presence: true
-  validates :price, presence: true, numericality: {greater_than: 0}
-  validates :state, presence: true, inclusion: STATES
-  validates :kind, presence: true, inclusion: KINDS
+  validates :country, presence: true, if: :published?
+  validates :city, presence: true, if: :published?
+  validates :street, presence: true,if: :published? 
+  validates :price, presence: true, numericality: {greater_than: 0}, if: :published?
+  validates :state, inclusion: STATES, if: :published?
+  validates :kind, inclusion: KINDS, if: :published?
   validates :property_type, presence: true, inclusion: PROPERTY_TYPES
 
-  acts_as_gmappable check_process: :prevent_geocoding, msg: "Wrong address"
+  acts_as_gmappable process_geocoding: false, check_process: true, msg: "Wrong address"
 
   scope :published, lambda {where("state = ? and expiry_date >= ?", 'published', Date.today)}
   scope :drafts, where(state: "draft")
@@ -50,12 +50,13 @@ class Offer < ActiveRecord::Base
   end
 
   def hide!
-    self.state = "draft"
-    save(validate: false)
+    update_attribute(:state, "draft")
   end
 
   def publish!
-    update_attribute(:state, "published")
+    self.state = "published"
+    process_geocoding
+    save
   end
 
   def archive!

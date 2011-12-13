@@ -50,11 +50,14 @@
   = render @comments
 
 #new_comment
-  %h3 Add new comment
-  = simple_form_for [@offer.offer, Comment.new] do |f|
-    = f.input :title
-    = f.input :body
-    = f.button :submit
+  - if current_user
+    %h3 Add new comment
+    = simple_form_for [@offer.offer, Comment.new] do |f|
+      = f.input :title
+      = f.input :body
+      = f.button :submit
+  - else
+    %p You need to be logged in to add a comment
 
 - content_for :footer do
   = yield :scripts

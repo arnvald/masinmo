@@ -2,6 +2,7 @@
 
 class CommentsController < ApplicationController
 
+  before_filter :authenticate_user!
   before_filter :find_comment, :only => [:destroy]
   before_filter :check_admin, :only => [:destroy]
 
@@ -30,7 +31,7 @@ class CommentsController < ApplicationController
   end
 
   def check_admin
-    return true if current_user && current_user.admin?
+    return true if current_user.admin?
     flash[:notice] = "Only admin can do it"
     redirect_to offer_path(@comment.offer)
   end

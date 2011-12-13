@@ -1,25 +1,36 @@
+<<<<<<< HEAD
 %h2= link_to "New offer", new_offer_path if current_user
 = yield :sidebar
 %h1 Search
 = search_form_for @search do |f|
+=======
+- @search = SearchesPresenter.new(@search, self, current_user)
+%h4= link_to "New offer", new_offer_path if current_user
+
+= yield :sidebar
+
+= search_form_for @search.search do |f|
+>>>>>>> 5d0fe845c7cbb61b438ec1f52139c5112a6e15c8
   = f.label :title_cont
   = f.text_field :title_cont
   = f.label :country_eq
-  = f.select :country_eq, [""] + @countries
+  = f.select :country_eq, @search.countries, include_blank: true
   = f.label :region_eq
-  = f.select :region_eq, [""] + @regions
+  = f.select :region_eq,  @search.regions, include_blank: true
   = f.label :city_cont
-  = f.select :city_cont, [""] + @cities
+  = f.select :city_cont, @search.cities, include_blank: true
   = f.label :street_cont
   = f.text_field :street_cont
-  = f.label :price_gt
-  = f.text_field :price_gt
-  = f.label :price_lt
-  = f.text_field :price_lt
+  = f.label :price_between
+  = select_tag :choose_price, options_for_select(@search.prices_ranges), include_blank: true
+  = f.hidden_field :price_gt
+  = f.hidden_field :price_lt
   = f.label :rooms_eq
   = f.text_field :rooms_eq
   = f.label :bathrooms_eq
-  = f.text_field :bathrooms_eq
+  = select_tag :choose_bathrooms, options_for_select(@search.bathroom_ranges), include_blank: true
+  = f.hidden_field :bathrooms_eq
+  = f.hidden_field :bathrooms_gteq
   = f.label :kind_eq
   = f.select :kind_eq, {"sell or rent" => "", "sell" => "sell", "rent" => "rent"}
   = f.submit :id => "button_search"
