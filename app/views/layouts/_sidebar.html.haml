@@ -1,16 +1,9 @@
-<<<<<<< HEAD
-%h2= link_to "New offer", new_offer_path if current_user
-= yield :sidebar
-%h1 Search
-= search_form_for @search do |f|
-=======
 - @search = SearchesPresenter.new(@search, self, current_user)
 %h4= link_to "New offer", new_offer_path if current_user
 
 = yield :sidebar
 
 = search_form_for @search.search do |f|
->>>>>>> 5d0fe845c7cbb61b438ec1f52139c5112a6e15c8
   = f.label :title_cont
   = f.text_field :title_cont
   = f.label :country_eq
