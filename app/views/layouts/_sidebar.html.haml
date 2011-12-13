@@ -1,7 +1,6 @@
-%h4= link_to "New offer", new_offer_path if current_user
-
+%h2= link_to "New offer", new_offer_path if current_user
 = yield :sidebar
-
+%h1 Search
 = search_form_for @search do |f|
   = f.label :title_cont
   = f.text_field :title_cont
@@ -23,4 +22,4 @@
   = f.text_field :bathrooms_eq
   = f.label :kind_eq
   = f.select :kind_eq, {"sell or rent" => "", "sell" => "sell", "rent" => "rent"}
-  = f.submit
+  = f.submit :id => "button_search"

@@ -1,13 +1,13 @@
 - @offer = OfferPresenter.new(@offer, self, current_user)
-= link_to "Back to offers", offers_path
+= link_to "Back to offers", offers_path, :class => 'btn'
 .offer{id: "offer_#{@offer.id}"}
   %h2.title= @offer.title
   = @offer.add_favorite_link
   = @offer.delete_favorite_link
   %h4= @offer.summary
-  .row.show-grid
+  .media-grid
     - @offer.photos.each do |photo|
-      .span-one-third
+      .thumbnail
         =link_to image_tag(photo.image.thumb.url), photo.image.url, class: "show_photo"
   .offer_details
     .location_details
