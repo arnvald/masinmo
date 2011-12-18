@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111209125954) do
+ActiveRecord::Schema.define(:version => 20111218182825) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(:version => 20111209125954) do
     t.string   "city"
     t.string   "region"
     t.string   "country"
-    t.float    "price",           :default => 0.0,     :null => false
+    t.float    "price",           :default => 0.0
     t.string   "state",           :default => "draft", :null => false
     t.float    "latitude"
     t.float    "longitude"

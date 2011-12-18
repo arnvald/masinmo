@@ -20,7 +20,7 @@ class Offer < ActiveRecord::Base
   validates :price, presence: true, numericality: {greater_than: 0}, if: :published?
   validates :state, inclusion: STATES, if: :published?
   validates :kind, inclusion: KINDS, if: :published?
-  validates :property_type, presence: true, inclusion: PROPERTY_TYPES
+  validates :property_type, inclusion: PROPERTY_TYPES, if: :published?
 
   acts_as_gmappable process_geocoding: false, check_process: true, msg: "Wrong address"
 
