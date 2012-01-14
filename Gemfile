@@ -24,19 +24,14 @@ end
 
 group :test do
   gem 'turn', :require => false
-  gem 'factory_girl'
+  gem 'factory_girl_rails'
   gem 'rspec-rails'
-end
-
-group :development, :test do
-  gem 'jasmine', '1.0.2.1'
-  gem 'headless', '0.1.0'
 end
 
 group :develompent do
   gem 'rails-dev-tweaks', '~> 0.5.1'
 end
 
-group :procution do
+group :production do
   gem 'thin'
 end
