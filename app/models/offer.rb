@@ -6,8 +6,6 @@ class Offer < ActiveRecord::Base
 
   paginates_per 20
 
-  before_create :set_expiry_date
-
   belongs_to :user
   has_many :photos
   has_many :favorites, dependent: :destroy
@@ -18,7 +16,7 @@ class Offer < ActiveRecord::Base
   validates :city, presence: true, if: :published?
   validates :street, presence: true,if: :published? 
   validates :price, presence: true, numericality: {greater_than: 0}, if: :published?
-  validates :state, inclusion: STATES, if: :published?
+  validates :state, inclusion: STATES
   validates :kind, inclusion: KINDS, if: :published?
   validates :property_type, inclusion: PROPERTY_TYPES, if: :published?
 
@@ -27,7 +25,6 @@ class Offer < ActiveRecord::Base
   scope :published, lambda {where("state = ? and expiry_date >= ?", 'published', Date.today)}
   scope :drafts, where(state: "draft")
   scope :archived, where(state: "archived")
-
 
   scope :by_country, lambda {|c| where(country: c)}
   scope :by_region, lambda {|r| where(country: r)}
@@ -38,7 +35,7 @@ class Offer < ActiveRecord::Base
   # MAPS
   # ========
   def gmaps4rails_address
-    [street, building, city, country].select{|x| x != ""}.join(', ')
+    [street, building, city, country].select{|x| x && x != ""}.join(', ')
   end
 
   def gmaps4rails_infowindow
@@ -55,6 +52,7 @@ class Offer < ActiveRecord::Base
 
   def publish!
     self.state = "published"
+    set_expiry_date
     process_geocoding
     save
   end
