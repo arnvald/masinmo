@@ -1,0 +1,6 @@
+- @announcements.each do |announcement|
+  .announcement
+    %p= announcement.created_at
+    %p
+      %strong= announcement.title
+    %p= announcement.body
