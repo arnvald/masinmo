@@ -12,4 +12,10 @@ class SearchController < ApplicationController
     render json: @regions
   end
 
+  def price_ranges
+    search = SearchesPresenter.new(Offer.search,nil)
+    @ranges = search.price_ranges(params[:kind])
+    render json: @ranges
+  end
+
 end

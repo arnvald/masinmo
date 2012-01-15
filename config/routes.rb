@@ -11,6 +11,7 @@ Inmo::Application.routes.draw do
 
   match "search/cities" => "search#cities"
   match "search/regions" => "search#regions"
+  match "search/price_ranges" => "search#price_ranges"
 
   resources :offers do 
     resources :comments, :only => [:create, :destroy]

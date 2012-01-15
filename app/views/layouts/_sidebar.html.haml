@@ -14,16 +14,18 @@
   = f.select :city_cont, @search.cities, include_blank: true
   = f.label :street_cont
   = f.text_field :street_cont
-  = f.label :price_between
-  = select_tag :choose_price, options_for_select(@search.prices_ranges), include_blank: true
+  = f.label :price_between, "Price between (in Euros)"
+  = select_tag :choose_price, options_for_select(@search.price_ranges), include_blank: true
   = f.hidden_field :price_gt
   = f.hidden_field :price_lt
   = f.label :rooms_eq
-  = f.text_field :rooms_eq
+  = select_tag :choose_rooms, options_for_select(@search.room_ranges), include_blank: true
+  = f.hidden_field :rooms_eq
+  = f.hidden_field :rooms_gt
   = f.label :bathrooms_eq
   = select_tag :choose_bathrooms, options_for_select(@search.bathroom_ranges), include_blank: true
   = f.hidden_field :bathrooms_eq
-  = f.hidden_field :bathrooms_gteq
+  = f.hidden_field :bathrooms_gt
   = f.label :kind_eq
-  = f.select :kind_eq, {"sell or rent" => "", "sell" => "sell", "rent" => "rent"}
+  = f.select :kind_eq, {"sell" => "sell", "rent" => "rent"}
   = f.submit :id => "button_search"
