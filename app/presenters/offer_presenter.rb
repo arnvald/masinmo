@@ -20,6 +20,7 @@ class OfferPresenter
   end
 
   def change_state_link
+    return nil unless @user
     if @offer.draft?
       helper.link_to 'publish', @view.publish_offer_path(@offer), method: :put
     elsif @offer.published?
@@ -27,10 +28,6 @@ class OfferPresenter
     else
       "Offer expired"
     end
-  end
-
-  def method_missing(*args)
-    @offer.send(*args)
   end
 
   def allowed_to_edit?
@@ -49,10 +46,20 @@ class OfferPresenter
     """)
   end
 
+  def subscribe_checkbox
+    helper.raw("""
+      <label for='subscribe_#{@offer.id}'>Notify about price changes</label>
+      <input type='checkbox' class='subscribe_offer' name='subscribe' id='subscribe_#{@offer.id}' #{'checked' if subscribed?}>
+    """)
+  end
 
   private
   def already_favorited?
-    !!favorite
+    @user && !!favorite
+  end
+
+  def subscribed?
+    @user && !!subscription
   end
 
   def helper
@@ -63,4 +70,11 @@ class OfferPresenter
     Favorite.find_by_user_id_and_offer_id(@user.id, @offer.id)
   end
 
+  def subscription
+    @offer.subscriptions.find_by_user_id(@user.id)
+  end
+
+  def method_missing(*args)
+    @offer.send(*args)
+  end
 end

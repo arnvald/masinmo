@@ -4,3 +4,7 @@ $(document).ready ->
     current = $(this).attr "href"
     $(current).removeClass "hidden"
     return
+
+  $('.subscribe_offer').click ->
+    offer_id = $(this).attr("id").match(/\d+/)
+    $.post("/offers/#{offer_id}/subscribe")

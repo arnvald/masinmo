@@ -18,6 +18,7 @@ Inmo::Application.routes.draw do
     member do
       put :publish
       put :hide
+      post :subscribe
     end
   end
 

@@ -9,6 +9,8 @@ class Offer < ActiveRecord::Base
   belongs_to :user
   has_many :photos
   has_many :favorites, dependent: :destroy
+  has_many :subscribers, through: :subscriptions
+  has_many :subscriptions, dependent: :destroy
   has_many :comments, dependent: :destroy
 
   validates :title, length: {minimum: 15, maximum: 100}
@@ -68,10 +70,6 @@ class Offer < ActiveRecord::Base
   end
 
   private
-  def prevent_geocoding
-    country.blank? && city.blank? && street.blank?
-  end
-
   def set_expiry_date
     self.expiry_date = Date.today + 2.weeks
   end

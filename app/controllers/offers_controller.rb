@@ -4,7 +4,7 @@ class OffersController < ApplicationController
 
   before_filter :authenticate_user!, except: [:index]
   before_filter :find_offer, except: [:index, :new, :create]
-  before_filter :check_owner, except: [:index, :show, :new, :create]
+  before_filter :check_owner, except: [:index, :show, :new, :create, :subscribe, :report]
 
   def index
     all_offers = my_offers? ? current_user.offers : Offer.published
@@ -39,7 +39,10 @@ class OffersController < ApplicationController
   def edit; end
 
   def update
-    if @offer.update_attributes(params[:offer])
+    @offer.attributes = params[:offer]
+    send_mail = @offer.price_changed?
+    if @offer.save
+      OfferMailer.price_changed(@offer).deliver if send_mail
       redirect_to user_offers_path(current_user)
     else
       render action: :edit
@@ -62,6 +65,20 @@ class OffersController < ApplicationController
   def hide
     @offer.hide!
     redirect_to user_offers_path(current_user)
+  end
+
+  def subscribe
+    subscription = @offer.subscriptions.find_by_user_id(current_user.id)
+    if subscription.nil?
+      Subscription.create(offer: @offer, user: current_user)
+    else
+      subscription.destroy
+    end
+    render nothing: true
+  end
+
+  def report
+    OfferMailer.report(@offer, current_user, params[:report]).deliver
   end
 
   private
