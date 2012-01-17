@@ -36,4 +36,8 @@ class User < ActiveRecord::Base
     login = conditions.delete(:login)
     where(conditions).where(["lower(username) = :value", { :value => login.strip.downcase }]).first
   end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end

@@ -53,7 +53,6 @@
   - if current_user
     %h3 Add new comment
     = simple_form_for [@offer.offer, Comment.new] do |f|
-      = f.input :title
       = f.input :body
       = f.button :submit
   - else

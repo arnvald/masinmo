@@ -1,6 +1,6 @@
 .comment
   %p
-    = comment.user.try(:email)
+    = comment.user.try(:full_name)
     = comment.created_at
   %p= comment.body
   - if current_user && current_user.admin?
