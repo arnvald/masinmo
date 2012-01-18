@@ -6,7 +6,6 @@ Inmo::Application.initialize!
 
 ActionMailer::Base.delivery_method = :smtp  
 ActionMailer::Base.raise_delivery_errors = true  
-ActionMailer::Base.default_charset = 'utf-8'  
 ActionMailer::Base.smtp_settings = { 
   :enable_starttls_auto => true,
   :address => 'inmo.megiteam.pl',
