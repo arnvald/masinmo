@@ -16,8 +16,8 @@ $(document).ready ->
 
   $('#choose_price').change ->
     values = $('#choose_price option:selected').text().split('-')
-    $("#q_price_gt").val(values[0])
-    $("#q_price_lt").val(values[1])
+    $("#q_price_gteq").val(values[0])
+    $("#q_price_lteq").val(values[1])
 
   $('#choose_bathrooms').change ->
     MIN_GT_VAL = 4

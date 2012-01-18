@@ -16,8 +16,8 @@
   = f.text_field :street_cont
   = f.label :price_between, "Price between (in Euros)"
   = select_tag :choose_price, options_for_select(@search.price_ranges), include_blank: true
-  = f.hidden_field :price_gt
-  = f.hidden_field :price_lt
+  = f.hidden_field :price_gteq
+  = f.hidden_field :price_lteq
   = f.label :rooms_eq
   = select_tag :choose_rooms, options_for_select(@search.room_ranges), include_blank: true
   = f.hidden_field :rooms_eq
