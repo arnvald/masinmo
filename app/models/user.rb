@@ -27,6 +27,10 @@ class User < ActiveRecord::Base
     admin == true
   end
 
+  def active?
+    active
+  end
+
   def to_s
     email
   end
@@ -40,4 +44,9 @@ class User < ActiveRecord::Base
   def full_name
     "#{first_name} #{last_name}"
   end
+
+  private
+  def active_for_authentication? 
+    super && active?
+  end 
 end
