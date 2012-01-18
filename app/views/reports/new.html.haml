@@ -1,0 +1,8 @@
+#report_offer
+  %h3 
+    Report offer
+    = link_to @offer.title, offer_path(@offer)
+  = form_tag offer_report_path(@offer) do
+    = label_tag :report, 'Reason'
+    = text_area_tag :report
+    = submit_tag 'Report offer'

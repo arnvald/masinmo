@@ -15,11 +15,12 @@ Inmo::Application.routes.draw do
 
   resources :offers do 
     resources :comments, :only => [:create, :destroy]
+    resource :report, :only => [:new, :create]
+    resource :question, :only => [:new, :create]
     member do
       put :publish
       put :hide
       post :subscribe
-      post :report
     end
   end
 

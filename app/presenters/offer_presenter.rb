@@ -19,6 +19,16 @@ class OfferPresenter
     helper.link_to "add favorite", @view.favorites_path(offer: @offer.id), class: "add_favorite #{'hidden' if already_favorited?}", method: :post, remote: true
   end
 
+  def report_link
+    return nil unless @user
+    helper.link_to "report offer", @view.new_offer_report_path(@offer)
+  end
+
+  def contact_link
+    return nil unless @user
+    helper.link_to "contact owner", @view.new_offer_question_path(@offer)
+  end
+
   def change_state_link
     return nil unless @user
     if @offer.draft?

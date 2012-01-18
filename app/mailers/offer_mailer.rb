@@ -17,4 +17,16 @@ class OfferMailer < ActionMailer::Base
 
     mail(to: recipients, subject: "offer #{@offer.title} reported")
   end
+
+  def contact_owner(offer, user, question)
+    @offer = offer
+    @user = user
+    @question = question
+
+    mail(
+      to: offer.user.email, 
+      subject: "Question about offer #{@offer.title}",
+      reply_to: @user.email
+    )
+  end
 end

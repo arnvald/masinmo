@@ -77,11 +77,6 @@ class OffersController < ApplicationController
     render nothing: true
   end
 
-  def report
-    OfferMailer.report(@offer, current_user, params[:report]).deliver
-    redirect_to offer_path(@offer)
-  end
-
   private
   def find_offer
     @offer = Offer.find(params[:id])

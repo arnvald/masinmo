@@ -4,6 +4,8 @@
   %h2.title= @offer.title
   = @offer.add_favorite_link
   = @offer.delete_favorite_link
+  = @offer.report_link
+  = @offer.contact_link
   %h4= @offer.summary
   .media-grid
     - @offer.photos.each do |photo|
@@ -57,14 +59,6 @@
       = f.button :submit
   - else
     %p You need to be logged in to add a comment
-
-#report_offer
-  - if current_user
-    %h3 Report offer
-    = form_tag report_offer_path(@offer.offer), method: :post do
-      = label_tag :report, 'Reason'
-      = text_field_tag :report
-      = submit_tag 'Report offer'
 
 - content_for :footer do
   = yield :scripts

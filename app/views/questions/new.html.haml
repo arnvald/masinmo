@@ -1,0 +1,6 @@
+#report_offer
+  %h3 Contact owner
+  = form_tag offer_question_path(@offer) do
+    = label_tag :question, 'Message'
+    = text_area_tag :question
+    = submit_tag 'Send message'
