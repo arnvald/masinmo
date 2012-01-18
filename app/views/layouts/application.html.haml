@@ -17,18 +17,19 @@
   %body
     = render "/layouts/header"
 
-    .container-fluid
-      .sidebar
-        .well
-          = render "/layouts/sidebar"
-          = yield :sidebar
-      .content
-        - flash.each do |name, msg|
-          = content_tag :div, msg, id: "flash_#{name}"
-        = yield
-      .sidebar.news
-        .well
-          = render "/layouts/announcements"
+    #container
+      .row
+        .span4
+          .well
+            = render "/layouts/sidebar"
+            = yield :sidebar
+        .span9
+          - flash.each do |name, msg|
+            = content_tag :div, msg, id: "flash_#{name}"
+          = yield
+        .span3
+          .well
+            = render "/layouts/announcements"
       %footer
         %p Masinmo 2011.
         = yield :footer

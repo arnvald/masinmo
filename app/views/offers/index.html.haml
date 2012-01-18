@@ -11,7 +11,7 @@
   = sort_link @search, :region
   = sort_link @search, :country
   = sort_link @search, :created_at
-  %div#offers.row.show-grid
+  %div#offers
     - if @offers.empty? and params[:q]
       Sorry, nothing was found
     - else
