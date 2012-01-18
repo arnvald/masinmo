@@ -4,7 +4,6 @@
   %h3.title= link_to offer.title, offer_path(offer.offer)
   = offer.add_favorite_link
   = offer.delete_favorite_link
-  %p= offer.subscribe_checkbox
   %p= offer.gmaps4rails_address
   %p= offer.summary
   %p= "Price: #{number_to_currency offer.price}"

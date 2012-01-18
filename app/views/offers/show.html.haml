@@ -6,6 +6,8 @@
   = @offer.delete_favorite_link
   = @offer.report_link
   = @offer.contact_link
+  %p= @offer.subscribe_checkbox
+  %br
   %h4= @offer.summary
   .media-grid
     - @offer.photos.each do |photo|
