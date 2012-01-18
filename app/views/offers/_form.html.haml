@@ -39,8 +39,6 @@
     = f.simple_fields_for :photos do |fp|
       .input= image_tag fp.object.image.thumb.url
       = fp.input :image, as: :file
-      = fp.input :title
-      = fp.input :description
       = fp.input :remove_image, as: :boolean
       = fp.input :image_cache, as: :hidden
   %p Fields marked with * are obligatory
