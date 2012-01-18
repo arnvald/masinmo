@@ -19,6 +19,7 @@ Inmo::Application.routes.draw do
       put :publish
       put :hide
       post :subscribe
+      post :report
     end
   end
 

@@ -58,5 +58,13 @@
   - else
     %p You need to be logged in to add a comment
 
+#report_offer
+  - if current_user
+    %h3 Report offer
+    = form_tag 'report', url: report_offer_path(@offer), method: :post do
+      = label_tag :report, 'Reason'
+      = text_field :report
+      = submit_tag 'Report offer'
+
 - content_for :footer do
   = yield :scripts
