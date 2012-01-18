@@ -61,9 +61,9 @@
 #report_offer
   - if current_user
     %h3 Report offer
-    = form_tag 'report', url: report_offer_path(@offer), method: :post do
+    = form_tag report_offer_path(@offer.offer), method: :post do
       = label_tag :report, 'Reason'
-      = text_field :report
+      = text_field_tag :report
       = submit_tag 'Report offer'
 
 - content_for :footer do
