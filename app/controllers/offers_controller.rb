@@ -79,6 +79,7 @@ class OffersController < ApplicationController
 
   def report
     OfferMailer.report(@offer, current_user, params[:report]).deliver
+    redirect_to offer_path(@offer)
   end
 
   private
