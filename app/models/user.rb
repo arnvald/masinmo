@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
 
   attr_accessor :login
 
+  scope :admin, where(admin: true)
+
   validates :username, presence: true, uniqueness: true, length: {maximum: 12}
   validates :first_name, presence: true, length: {maximum: 64}
   validates :last_name, presence: true, length: {maximum: 64}
