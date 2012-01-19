@@ -1,10 +1,10 @@
-Hi!
+Hi!<br><br>
 
-We'd like to inform you that the price of the offer you are subscribed to,
-<%= @offer.title %>, has just changed.
-The new price is: <%= @offer.price %>
-You can see the offer by clicking the link below:
-<%= link_to url_for(@offer), offer_path(@offer) %>
-
-Best regards,
+We'd like to inform you that the price of the offer you are subscribed to, <br>
+<%= @offer.title %>, has just changed. <br>
+The new price is: <%= @offer.price %> <br>
+You can see the offer by clicking the link below: <br>
+<%= link_to @offer.title, offer_url(@offer, only_path: false) %>
+<br><br>
+Best regards, <br>
 +inMO team

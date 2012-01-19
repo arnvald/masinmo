@@ -1,6 +1,6 @@
-Offer <%= @offer.title %> has been reported by user <%= @user.username %>.
+Offer <%= @offer.title %> has been reported by user <%= @user.username %>. <br>
 
-Report: <%= @report %>
+Report: <%= @report %><br>
 
-Link to offer:
-<%= link_to @offer.title, offer_path(@offer) %>
+Link to offer:<br>
+<%= link_to @offer.title, offer_url(@offer, only_path: false) %><br>

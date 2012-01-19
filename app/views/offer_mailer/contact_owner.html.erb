@@ -1,11 +1,14 @@
-User <%= @user.username %> asked you a question about an offer <%= @offer.title %>
+User <%= @user.username %> asked you a question about an offer <%= @offer.title %><br><br>
 
-<%= @question %>
+<%= @question %><br><br>
 
-You can answer this message by replying this email or contacting user other way:
-<%= @user.full_name %>
-<%= @user.email %>
-<%= @user.phone %>
+You can answer this message by replying this email or contacting user other way:<br>
+<%= @user.full_name %><br>
+<%= @user.email %><br>
+<%= @user.phone %><br>
 
-Best regards,
+You can see the offer by clicking link below:<br>
+<%= link_to @offer.title, offer_url(@offer, only_path: false) %><br><br>
+
+Best regards, <br>
 +inMO team
