@@ -53,6 +53,7 @@ ActiveAdmin.register User do
   member_action :deactivate, method: :post do
     user = User.find(params[:id])
     user.update_attribute(:active, false)
+    user.offers.map(&:hide!)
     redirect_to action: :index
   end
 end
