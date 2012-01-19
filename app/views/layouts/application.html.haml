@@ -24,6 +24,7 @@
             = render "/layouts/sidebar"
             = yield :sidebar
         .span9
+          %p= show_advert @contract_top
           - flash.each do |name, msg|
             = content_tag :div, msg, id: "flash_#{name}"
           = yield
@@ -33,3 +34,4 @@
       %footer
         %p Masinmo 2011.
         = yield :footer
+        = show_advert(@contract_bottom)
