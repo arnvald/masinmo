@@ -32,6 +32,7 @@ ActiveAdmin.register User do
     f.inputs "info" do
       f.input :first_name
       f.input :last_name
+      f.input :username
       f.input :country
       f.input :city
       f.input :active
