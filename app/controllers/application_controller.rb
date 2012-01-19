@@ -11,6 +11,6 @@ class ApplicationController < ActionController::Base
   end
 
   def find_announcements
-    @announcements = Announcement.for_sidebar
+    @news = Announcement.for_sidebar
   end
 end
