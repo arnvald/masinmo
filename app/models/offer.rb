@@ -9,7 +9,7 @@ class Offer < ActiveRecord::Base
   belongs_to :user
   has_many :photos
   has_many :favorites, dependent: :destroy
-  has_many :subscribers, through: :subscriptions
+  has_many :subscribers, through: :subscriptions, source: :user
   has_many :subscriptions, dependent: :destroy
   has_many :comments, dependent: :destroy
 
