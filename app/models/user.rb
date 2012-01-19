@@ -47,7 +47,6 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
-  private
   def active_for_authentication? 
     super && active?
   end 
